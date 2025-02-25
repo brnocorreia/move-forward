@@ -17,14 +17,14 @@ Move Forward is a CLI (or should we call it a starter kit?) for you let your cus
 ##### For Intel Macs
 
 ```bash
-curl -L https://github.com/move-forward/cli/releases/latest/download/move-forward-darwin-amd64 -o /usr/local/bin/move-forward
+curl -L https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-darwin-amd64 -o /usr/local/bin/move-forward
 chmod +x /usr/local/bin/move-forward
 ```
 
 ##### For Apple Silicon Macs
 
 ```bash
-curl -L https://github.com/move-forward/cli/releases/latest/download/move-forward-darwin-arm64 -o /usr/local/bin/move-forward
+curl -L https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-darwin-arm64 -o /usr/local/bin/move-forward
 chmod +x /usr/local/bin/move-forward
 ```
 
@@ -33,22 +33,22 @@ chmod +x /usr/local/bin/move-forward
 ##### For AMD64
 
 ```bash
-curl -L https://github.com/move-forward/cli/releases/latest/download/move-forward-linux-amd64 -o /usr/local/bin/move-forward
+curl -L https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-linux-amd64 -o /usr/local/bin/move-forward
 chmod +x /usr/local/bin/move-forward
 ```
 
 ##### For ARM64
 
 ```bash
-curl -L https://github.com/move-forward/cli/releases/latest/download/move-forward-linux-arm64 -o /usr/local/bin/move-forward
+curl -L https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-linux-arm64 -o /usr/local/bin/move-forward
 chmod +x /usr/local/bin/move-forward
 ```
 
 ### Windows
 
 1. Download the appropriate binary for your system:
-   - [Windows AMD64](https://github.com/move-forward/cli/releases/latest/download/move-forward-windows-amd64.exe)
-   - [Windows ARM64](https://github.com/move-forward/cli/releases/latest/download/move-forward-windows-arm64.exe)
+   - [Windows AMD64](https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-windows-amd64.exe)
+   - [Windows ARM64](https://github.com/brnocorreia/move-forward/releases/latest/download/move-forward-windows-arm64.exe)
 2. Rename the file to `move-forward.exe`
 3. Add it to your system's PATH
 
