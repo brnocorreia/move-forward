@@ -1,0 +1,65 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Binaries
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, windows, darwin]
+        goarch: [amd64, arm64]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      
+      - name: Build Binary
+        run: |
+          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -o move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
+  
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: move-forward-*/**
+          body: "Automated release of CLI tool.\n\n## Installation\n\n### macOS:\n1. Download the `move-forward-darwin-amd64` or `move-forward-darwin-arm64` binary from the latest release.
+2. Move it to `/usr/local/bin/` with `mv move-forward-darwin-* /usr/local/bin/move-forward`
+3. Grant execution permission with `chmod +x /usr/local/bin/move-forward`
+4. Run with `move-forward`
+\n### Windows:\n1. Download the `move-forward-windows-amd64.exe` or `move-forward-windows-arm64.exe` from the latest release.
+2. Move it to a folder in your PATH (e.g., `C:\\Program Files\\MoveForward`)
+3. Run in Command Prompt or PowerShell with `move-forward.exe`
+\n### Linux:\n1. Download the `move-forward-linux-amd64` or `move-forward-linux-arm64` binary from the latest release.
+2. Move it to `/usr/local/bin/` with `mv move-forward-linux-* /usr/local/bin/move-forward`
+3. Grant execution permission with `chmod +x /usr/local/bin/move-forward`
+4. Run with `move-forward`
+\n## Usage\nRun `move-forward --help` to see available commands."
+          tag_name: ${{ github.ref }}
