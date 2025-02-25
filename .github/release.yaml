@@ -27,13 +27,13 @@ jobs:
       
       - name: Build Binary
         run: |
-          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -o abacatepay-cli-${{ matrix.goos }}-${{ matrix.goarch }}
+          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -o move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: abacatepay-cli-${{ matrix.goos }}-${{ matrix.goarch }}
-          path: abacatepay-cli-${{ matrix.goos }}-${{ matrix.goarch }}
+          name: move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: move-forward-${{ matrix.goos }}-${{ matrix.goarch }}
   
   release:
     name: Create GitHub Release
@@ -49,17 +49,17 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: abacatepay-cli-*/**
-          body: "Automated release of CLI tool.\n\n## Installation\n\n### macOS:\n1. Download the `abacatepay-cli-darwin-amd64` or `abacatepay-cli-darwin-arm64` binary from the latest release.
-2. Move it to `/usr/local/bin/` with `mv abacatepay-cli-darwin-* /usr/local/bin/abacatepay-cli`
-3. Grant execution permission with `chmod +x /usr/local/bin/abacatepay-cli`
-4. Run with `abacatepay-cli`
-\n### Windows:\n1. Download the `abacatepay-cli-windows-amd64.exe` or `abacatepay-cli-windows-arm64.exe` from the latest release.
-2. Move it to a folder in your PATH (e.g., `C:\\Program Files\\AbacatePay`)
-3. Run in Command Prompt or PowerShell with `abacatepay-cli.exe`
-\n### Linux:\n1. Download the `abacatepay-cli-linux-amd64` or `abacatepay-cli-linux-arm64` binary from the latest release.
-2. Move it to `/usr/local/bin/` with `mv abacatepay-cli-linux-* /usr/local/bin/abacatepay-cli`
-3. Grant execution permission with `chmod +x /usr/local/bin/abacatepay-cli`
-4. Run with `abacatepay-cli`
-\n## Usage\nRun `abacatepay-cli --help` to see available commands."
+          files: move-forward-*/**
+          body: "Automated release of CLI tool.\n\n## Installation\n\n### macOS:\n1. Download the `move-forward-darwin-amd64` or `move-forward-darwin-arm64` binary from the latest release.
+2. Move it to `/usr/local/bin/` with `mv move-forward-darwin-* /usr/local/bin/move-forward`
+3. Grant execution permission with `chmod +x /usr/local/bin/move-forward`
+4. Run with `move-forward`
+\n### Windows:\n1. Download the `move-forward-windows-amd64.exe` or `move-forward-windows-arm64.exe` from the latest release.
+2. Move it to a folder in your PATH (e.g., `C:\\Program Files\\MoveForward`)
+3. Run in Command Prompt or PowerShell with `move-forward.exe`
+\n### Linux:\n1. Download the `move-forward-linux-amd64` or `move-forward-linux-arm64` binary from the latest release.
+2. Move it to `/usr/local/bin/` with `mv move-forward-linux-* /usr/local/bin/move-forward`
+3. Grant execution permission with `chmod +x /usr/local/bin/move-forward`
+4. Run with `move-forward`
+\n## Usage\nRun `move-forward --help` to see available commands."
           tag_name: ${{ github.ref }}
